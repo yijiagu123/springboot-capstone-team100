@@ -1,10 +1,10 @@
-package net.enjoy.springboot.registrationlogin.service;
+package com.team100.springboot.service;
 
-import net.enjoy.springboot.registrationlogin.dto.UserDto;
-import net.enjoy.springboot.registrationlogin.entity.Role;
-import net.enjoy.springboot.registrationlogin.entity.User;
-import net.enjoy.springboot.registrationlogin.repository.RoleRepository;
-import net.enjoy.springboot.registrationlogin.repository.UserRepository;
+import com.team100.springboot.dto.UserDto;
+import com.team100.springboot.entity.Role;
+import com.team100.springboot.entity.User;
+import com.team100.springboot.repository.RoleRepository;
+import com.team100.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
