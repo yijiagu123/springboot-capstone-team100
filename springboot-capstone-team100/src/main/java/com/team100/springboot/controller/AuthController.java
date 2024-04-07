@@ -3,7 +3,7 @@ package com.team100.springboot.controller;
 import jakarta.validation.Valid;
 import com.team100.springboot.dto.UserDto;
 import com.team100.springboot.entity.User;
-import ncom.team100.springboot.service.UserService;
+import com.team100.springboot.service.UserService;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
