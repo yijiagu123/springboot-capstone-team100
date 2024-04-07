@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.enjoy.springboot.registrationlogin.entity.User;
+import com.team100.springboot.entity.User;
 
 @Getter
 @Setter
