@@ -1,0 +1,236 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Reddit Mono', monospace; /* Using Google Font Reddit Mono */
+    line-height: 1.6;
+    color: #333;
+    background-color: bisque; /* Light brown background */
+}
+
+/* Container for the whole page */
+#container {
+    width: 80%;
+    margin: auto;
+    overflow: auto;
+}
+
+/* Header Styles */
+header#ffc-logo {
+    text-align: center;
+    margin-bottom: 20px; /* Reduce space between header and nav */
+}
+
+header#ffc-logo img {
+    max-height: 100px; /* Logo image height */
+    margin: 0 auto; /* Center align */
+}
+
+/* Navigation Styles */
+nav {
+    background: #033C5A; /* Deep blue background */
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px; /* Increase space between links */
+}
+
+nav a:hover {
+    color: #eaeaea;
+}
+
+/* Mobile Navigation Styles */
+.mobile-nav .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 15px; /* Adjust right spacing */
+}
+
+/* Ensure the body has no margin */
+body {
+    margin: 0; /* Removes default margin */
+}
+
+/* Search Container Styles */
+.search-container {
+    width: 100%; /* Ensure the search container takes up full width */
+    text-align: center;
+    margin: 20px 0;
+    box-sizing: border-box; /* Ensure padding and border are included in the width calculation */
+}
+
+.search-container form {
+    display: flex; /* Use flexbox to layout children side by side */
+    width: 100%;
+}
+
+.search-container input[type="text"] {
+    flex-grow: 5; /* Input takes up the remaining space */
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-right: none; /* Remove the right border where it meets the button */
+    box-sizing: border-box; /* Ensure padding does not add to width */
+}
+
+.search-container button {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 17px;
+    background: #333; /* Button background color */
+    color: white; /* Text color */
+    border: 1px solid grey; /* Consistent with the input field */
+    box-sizing: border-box; /* Ensure padding does not add to width */
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background: #AA9868; /* Hover background color */
+}
+
+.button-group {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.button-group button {
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 0 10px;
+    background-color: #0190DB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-group button:hover {
+    background-color: #AA9868;
+}
+
+
+
+/* Footer Styles */
+footer {
+    background-color: #033C5A;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+footer p, footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: #c1c1c1;
+}
+
+/* Media Queries for responsiveness */
+@media (min-width: 768px) {
+    .tablet-desktop ul {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+    }
+
+    .tablet-desktop li {
+        margin: 0 20px;
+    }
+
+    .tablet-desktop a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .tablet-desktop a:hover {
+        color: #eaeaea;
+    }
+}
+
+/* Modal base styles */
+#myModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* Darker background for better focus on modal */
+}
+
+/* Modal content styles */
+.modal-content {
+    background-color: #fff;
+    margin: 4% auto;
+    padding: 20px;
+    border-radius: 10px; /* More pronounced rounded corners */
+    width: 50%; /* Adjust width as needed */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Stronger shadow for depth perception */
+    position: relative; /* Needed for positioning the close button absolutely */
+    animation: modalFadeIn 0.5s; /* Smooth fade-in animation */
+}
+
+@keyframes modalFadeIn {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* The Close Button */
+.close {
+    color: #333;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form styling */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Consistent gap between form elements */
+}
+
+.modal-content form input[type="text"],
+.modal-content form textarea,
+.modal-content form input[type="file"] {
+    padding: 10px;
+    border-radius: 5px; /* Slightly rounded borders for input and textarea */
+    border: 1px solid #ccc; /* Subtle border */
+    width: calc(100% - 20px); /* Full width minus padding */
+}
+
+.modal-content form button {
+    padding: 10px 0;
+    background-color: #E9C874; /* Bootstrap primary color for consistency */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for button hover */
+}
+
+.modal-content form button:hover {
+    background-color: #FF9800; /* Darker shade on hover */
+}
