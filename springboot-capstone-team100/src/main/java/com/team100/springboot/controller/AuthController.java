@@ -1,4 +1,4 @@
-package net.enjoy.springboot.registrationlogin.controller;
+package com.team100.springboot.controller;
 
 import jakarta.validation.Valid;
 import net.enjoy.springboot.registrationlogin.dto.UserDto;
