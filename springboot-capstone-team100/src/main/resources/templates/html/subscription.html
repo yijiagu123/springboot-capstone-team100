@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Subscription Page</title>
+
+    <link rel="stylesheet" href="../../static/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="tablet-desktop">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
+    <h1 style="text-align: center">Choose Your Subscription Plan</h1>
+
+    <div class="subscription-container">
+      <div
+        class="plan"
+        id="individual-plan"
+        style="position: absolute; left: 20%"
+      >
+        <h2>Individual Plan</h2>
+        <button class="button-group" onclick="location.href='payment.html';">
+          JOIN NOW
+        </button>
+        <ul class="features">
+          <li>More videos and more posts</li>
+          <li>Can post with pictures</li>
+          <li>Special outfit</li>
+        </ul>
+      </div>
+
+      <div
+        class="plan"
+        id="business-plan"
+        style="position: absolute; left: 60%"
+      >
+        <h2>Business Plan</h2>
+        <button class="button-group" onclick="location.href='payment.html';">
+          JOIN NOW
+        </button>
+        <ul class="features">
+          <li>More videos and more posts</li>
+          <li>Set up your own group</li>
+          <li>Profession Symbol</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

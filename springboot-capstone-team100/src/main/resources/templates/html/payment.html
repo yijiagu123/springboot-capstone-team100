@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Page</title>
+
+    <link rel="stylesheet" href="../../static/css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="tablet-desktop">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <h1 style="text-align: center">Payment Options</h1>
+    <div id="payment-methods" style="position: absolute; left: 20%">
+      <h2>Select your payment method:</h2>
+      <form action="/submit-payment" method="POST">
+        <div>
+          <input
+            type="radio"
+            id="creditCard"
+            name="paymentMethod"
+            value="creditCard"
+          />
+          <label for="creditCard">Credit Card</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="masterCard"
+            name="paymentMethod"
+            value="masterCard"
+          />
+          <label for="masterCard">MasterCard</label>
+        </div>
+
+        <button type="submit">Pay Now</button>
+      </form>
+    </div>
+  </body>
+</html>
