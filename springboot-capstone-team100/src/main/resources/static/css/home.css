@@ -23,6 +23,7 @@ body {
 header#ffc-logo {
     text-align: center;
     margin-bottom: 20px; /* Reduce space between header and nav */
+    margin-top: 20px;
 }
 
 header#ffc-logo img {
