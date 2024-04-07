@@ -1,6 +1,6 @@
-package net.enjoy.springboot.registrationlogin.repository;
+package com.team100.springboot.repository;
 
-import net.enjoy.springboot.registrationlogin.entity.Role;
+import com.team100.springboot.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
