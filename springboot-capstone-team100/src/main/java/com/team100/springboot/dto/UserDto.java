@@ -1,4 +1,4 @@
-package net.enjoy.springboot.registrationlogin.dto;
+package com.team100.springboot.dto;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
