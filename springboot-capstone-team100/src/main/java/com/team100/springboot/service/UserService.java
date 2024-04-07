@@ -1,7 +1,7 @@
-package net.enjoy.springboot.registrationlogin.service;
+package com.team100.springboot.service;
 
-import net.enjoy.springboot.registrationlogin.dto.UserDto;
-import net.enjoy.springboot.registrationlogin.entity.User;
+import com.team100.springboot.dto.UserDto;
+import com.team100.springboot.entity.User;
 
 import java.util.List;
 
