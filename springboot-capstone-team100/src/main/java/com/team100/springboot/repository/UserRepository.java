@@ -1,6 +1,6 @@
-package net.enjoy.springboot.registrationlogin.repository;
+package com.team100.springboot.repository;
 
-import net.enjoy.springboot.registrationlogin.entity.User;
+import com.team100.springboot.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
