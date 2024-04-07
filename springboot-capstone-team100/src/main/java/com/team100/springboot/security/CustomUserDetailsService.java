@@ -1,8 +1,8 @@
-package net.enjoy.springboot.registrationlogin.security;
+package com.team100.springboot.security;
 
-import net.enjoy.springboot.registrationlogin.entity.Role;
-import net.enjoy.springboot.registrationlogin.entity.User;
-import net.enjoy.springboot.registrationlogin.repository.UserRepository;
+import com.team100.springboot.entity.Role;
+import com.team100.springboot.entity.User;
+import com.team100.springboot.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
