@@ -1,4 +1,4 @@
-package net.enjoy.springboot.registrationlogin.entity;
+package com.team100.springboot.controller;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
