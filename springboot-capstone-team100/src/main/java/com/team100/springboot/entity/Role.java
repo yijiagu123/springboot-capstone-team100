@@ -1,4 +1,4 @@
-package com.team100.springboot.controller;
+package com.team100.springboot.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
