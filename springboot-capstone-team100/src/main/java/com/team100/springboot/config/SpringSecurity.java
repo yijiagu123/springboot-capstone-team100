@@ -27,14 +27,14 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index").permitAll()
+                                .requestMatchers("/home").permitAll()
                                 .requestMatchers("/userprofile").authenticated()
                                 .requestMatchers("/users").permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/userprofile")
+                                .defaultSuccessUrl("/home")
                                 .permitAll()
                 ).logout(
                         logout -> logout
