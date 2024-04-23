@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
-        name = "post",
+        name = "posts",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"title"})}
 )
 public class Post {
@@ -26,11 +26,15 @@ public class Post {
     @JoinColumn(name = "user_id", nullable = false)
     private User user; // Assuming there is a User entity mapped to 'users' table
 
+    @Column(name = "title", nullable = false)
+    private String title;
+
     @Column(name = "content", nullable = false)
     private String content;
 
     @Column(name = "post_at", nullable = false)
     private LocalDateTime postAt; // Uses java.time.LocalDateTime for timestamp
+
 
 }
 
