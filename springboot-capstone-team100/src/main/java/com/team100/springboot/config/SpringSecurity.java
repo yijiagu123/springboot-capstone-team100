@@ -27,9 +27,11 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
+                        authorize.requestMatchers("/css/**", "/images/**", "/js/**").permitAll()  // Allow static resource access
+                                .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/home").permitAll()
                                 .requestMatchers("/userprofile").authenticated()
+                                .requestMatchers("/posts/**").permitAll()
                                 .requestMatchers("/users").permitAll()
                 ).formLogin(
                         form -> form
