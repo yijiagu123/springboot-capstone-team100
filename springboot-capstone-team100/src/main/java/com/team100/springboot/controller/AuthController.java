@@ -63,9 +63,23 @@ public class AuthController {
 
     // handler method to handle user registration form submit request
     @PostMapping("/register/save")
+ public String showRegistrationForm(Model model) {
+        // create model object to store form data
+        UserDto user = new UserDto();
+        model.addAttribute("user", user);
+        return "register";
+    }
+
+    // handler method to handle user registration form submit request
+    @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto,
                                BindingResult result,
                                Model model){
+
+        // Additional validation based on user type
+        if (userDto.getUserType() == User.UserType.INDIVIDUAL && !userDto.getEmail().endsWith("@gwu.edu")) {
+            result.rejectValue("email", null, "Email must end with @gwu.edu for individual users");
+        }
 
         User existingUser = userService.findUserByEmail(userDto.getEmail());
 
@@ -79,10 +93,10 @@ public class AuthController {
             return "/register";
         }
 
-
         userService.saveUser(userDto);
         return "redirect:/register?success";
     }
+
 
     // handler method to handle list of users
     @GetMapping("/users")
