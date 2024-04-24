@@ -1,11 +1,14 @@
 package com.team100.springboot.controller;
 
+import com.team100.springboot.entity.Post;
+import com.team100.springboot.service.PostService;
 import jakarta.validation.Valid;
 import com.team100.springboot.dto.UserDto;
 import com.team100.springboot.entity.User;
 import com.team100.springboot.service.UserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,15 +22,33 @@ import java.util.List;
 @Controller
 public class AuthController {
     private UserService userService;
+    private final PostService postService;
 
     @Autowired // Add Autowired annotation to inject UserService
-    public AuthController(UserService userService) {
+    public AuthController(UserService userService, PostService postService) {
         this.userService = userService;
+        this.postService = postService;
     }
 
     // handler method to handle home page request
     @GetMapping("/home")
-    public String home() {
+    public String home(Model model, @RequestParam(defaultValue = "0") int page,
+                       @RequestParam(name = "search", required = false) String search) {
+        Pageable pageable = PageRequest.of(page, 10000); // 10为每页显示的数量
+
+        Page<Post> postPage;
+
+        if (search != null && !search.isEmpty()) {
+            postPage = postService.findAllPostsByKeyword(search, pageable);
+        } else {
+            postPage = postService.findAllPosts(pageable);
+        }
+
+        model.addAttribute("posts", postPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", postPage.getTotalPages());
+        model.addAttribute("search", search);
+
         return "home";
     }
 
