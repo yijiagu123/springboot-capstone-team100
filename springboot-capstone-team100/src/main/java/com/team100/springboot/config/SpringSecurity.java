@@ -33,6 +33,8 @@ public class SpringSecurity {
                                 .requestMatchers("/userprofile").authenticated()
                                 .requestMatchers("/posts/**").permitAll()
                                 .requestMatchers("/users").permitAll()
+                                .requestMatchers("/").permitAll()
+                                .requestMatchers("/subscription").permitAll()     
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
