@@ -53,17 +53,8 @@ public class AuthController {
     }
 
     // handler method to handle user registration form request
-    @GetMapping("/register")
+     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        // create model object to store form data
-        UserDto user = new UserDto();
-        model.addAttribute("user", user);
-        return "register";
-    }
-
-    // handler method to handle user registration form submit request
-    @PostMapping("/register/save")
- public String showRegistrationForm(Model model) {
         // create model object to store form data
         UserDto user = new UserDto();
         model.addAttribute("user", user);
