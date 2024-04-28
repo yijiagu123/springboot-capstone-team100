@@ -12,6 +12,23 @@
       href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-color: bisque;
+      }
+      footer {
+        background-color: #033c5a;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+    </style>
   </head>
 
   <body>
@@ -22,32 +39,99 @@
         <li><a href="#">Contact Us</a></li>
       </ul>
     </nav>
+    <br /><br /><br />
+    <div class="container">
+      <div class="row col-md-8 offset-md-2">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="text-center">Payment Options</h2>
+          </div>
 
-    <h1 style="text-align: center">Payment Options</h1>
-    <div id="payment-methods" style="position: absolute; left: 20%">
-      <h2>Select your payment method:</h2>
-      <form action="/submit-payment" method="POST">
-        <div>
-          <input
-            type="radio"
-            id="creditCard"
-            name="paymentMethod"
-            value="creditCard"
-          />
-          <label for="creditCard">Credit Card</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="masterCard"
-            name="paymentMethod"
-            value="masterCard"
-          />
-          <label for="masterCard">MasterCard</label>
-        </div>
+          <div class="card-body">
+            <form
+              method="post"
+              role="form"
+              th:action="@{/register/save}"
+              th:object="${user}"
+            >
+              <div class="form-group mb-3">
+                <label class="form-label">Address</label>
+                <input
+                  class="form-control form-control-sm"
+                  id="address"
+                  name="address"
+                  placeholder="Enter your address"
+                  th:field="*{fullName}"
+                  type="text"
+                />
+                <p
+                  th:errors="*{fullName}"
+                  class="text-danger"
+                  th:if="${#fields.hasErrors('fullName')}"
+                ></p>
+              </div>
 
-        <button type="submit">Pay Now</button>
-      </form>
+              <div class="form-group mb-3">
+                <label class="form-label">Card Number</label>
+                <input
+                  class="form-control form-control-sm"
+                  type="number"
+                  id="cardNumber"
+                  name="cardNumber"
+                  placeholder="XXXX-XXXX-XXXX-XXXX"
+                  pattern="\d{16}"
+                  title="Card number should be 16 digits."
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="cvv">CVV</label>
+                <input
+                  class="form-control form-control-sm"
+                  type="password"
+                  id="cvv"
+                  name="cvv"
+                  placeholder="XXX"
+                  pattern="\d{3}"
+                  title="CVV should be 3 digits."
+                  required
+                />
+              </div>
+
+              <div class="form-group mb-3">
+                <label class="form-label">Plan Type</label><br />
+                <input
+                  type="radio"
+                  id="individual"
+                  name="userType"
+                  value="INDIVIDUAL"
+                />
+                <label for="individual">Individual</label><br />
+                <input
+                  type="radio"
+                  id="business"
+                  name="userType"
+                  value="BUSINESS"
+                />
+                <label for="business">Business</label><br />
+              </div>
+
+              <div class="form-group mb-3">
+                <button class="btn btn-primary" type="submit">
+                  Make Payment
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
+  <footer>
+    <div class="copyright">
+      <p>@ George Washington University | GW Fitness</p>
+      <p><a href="mailto:gwfitness@club.net">gwfitness@club.net</a></p>
+    </div>
+  </footer>
 </html>
