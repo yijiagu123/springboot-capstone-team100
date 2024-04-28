@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subscription Page</title>
+    <title>Subscription Plans</title>
 
     <link rel="stylesheet" href="../../static/css/home.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,7 +12,116 @@
       href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        background-color: bisque;
+      }
+      footer {
+        background-color: #033c5a;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .plan-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .plan {
+        background: white;
+        width: 300px;
+        border: 2px solid #0f9d58;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+      }
+      .plan h3 {
+        margin: 10px 0;
+        color: #0f9d58;
+      }
+      .plan-details {
+        text-align: left;
+        margin-top: 15px;
+      }
+      .plan-details li {
+        margin: 10px 0;
+        list-style: none;
+      }
+      .plan-details li:before {
+        content: "✔";
+        margin-right: 5px;
+        color: #0f9d58;
+      }
+      .price {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .terms {
+        color: #666;
+        font-size: 12px;
+      }
+      .join-btn {
+        background-color: #0f9d58;
+        color: white;
+        border: none;
+        border-radius: 2px;
+        padding: 10px 20px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 15px;
+      }
+      .join-btn:hover {
+        background-color: #0c7c43;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+      }
+      .modal:target {
+        display: block;
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+        position: relative;
+      }
+      .close {
+        color: #aaa;
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
   </head>
+
   <body>
     <nav class="tablet-desktop">
       <ul>
@@ -21,40 +130,70 @@
         <li><a href="#">Contact Us</a></li>
       </ul>
     </nav>
-    <h1 style="text-align: center">Choose Your Subscription Plan</h1>
+    <br /><br /><br />
+    <div class="container">
+      <div class="plan-container">
+        <div class="plan">
+          <h3>Individual</h3>
+          <p class="price">
+            Get your first 14 days for $1,<br />then $9.99/mo.
+          </p>
+          <a href="payment.html" class="join-btn">JOIN NOW</a>
+          <p class="terms">
+            Subscription continues automatically. See
+            <a href="#modal">terms</a>.
+          </p>
+          <ul class="plan-details">
+            <li>Join our warm community</li>
+            <li>Post more content with memberships</li>
+            <li>Member deals & discounts</li>
+            <li>Access to other memberships</li>
+          </ul>
+        </div>
 
-    <div class="subscription-container">
-      <div
-        class="plan"
-        id="individual-plan"
-        style="position: absolute; left: 20%"
-      >
-        <h2>Individual Plan</h2>
-        <button class="button-group" onclick="location.href='payment.html';">
-          JOIN NOW
-        </button>
-        <ul class="features">
-          <li>More videos and more posts</li>
-          <li>Can post with pictures</li>
-          <li>Special outfit</li>
-        </ul>
+        <div class="plan">
+          <h3>Business</h3>
+          <p class="price">
+            Get your first 14 days for $1,<br />then $16.99/mo.
+          </p>
+          <a href="payment.html" class="join-btn">JOIN NOW</a>
+          <p class="terms">
+            Subscription continues automatically. See
+            <a href="#modal">terms</a>.
+          </p>
+          <ul class="plan-details">
+            <li>Set your own channel</li>
+            <li>Post content with picture and videos</li>
+            <li>More deals & discounts</li>
+            <li>Special signature for you</li>
+          </ul>
+        </div>
       </div>
-
-      <div
-        class="plan"
-        id="business-plan"
-        style="position: absolute; left: 60%"
-      >
-        <h2>Business Plan</h2>
-        <button class="button-group" onclick="location.href='payment.html';">
-          JOIN NOW
-        </button>
-        <ul class="features">
-          <li>More videos and more posts</li>
-          <li>Set up your own group</li>
-          <li>Profession Symbol</li>
-        </ul>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <a href="#" class="close">&times;</a>
+        <h2>Subscription Terms</h2>
+        <p>
+          GW Fitness Subscriptions Terms & Conditions Last updated: 2/20/2024
+          <ul>
+          <li>Your subscription will automatically renew each month on the date of purchase. You may cancel at any time before the renewal date to stop the next month's charge.</li>
+          <li>After the initial 14-day promotional period, the regular subscription fee will be charged to your provided payment method.</li>
+          <li>Ensure your payment information is accurate to avoid service disruption. We accept major credit/debit cards and payment services.</li>
+          <li>Refunds are subject to our refund policy. If you encounter any issues with the service, please contact our support team for assistance.</li>
+          <li>Changes to the subscription fee will be communicated to you at least 30 days in advance.</li>
+          <li>Your payment details are securely processed and sensitive data is encrypted.</li>
+          </ul>
+        <p>For full terms and conditions, please visit our Terms of Service page.</p>
+        </p>
       </div>
     </div>
   </body>
+  <footer>
+    <div class="copyright">
+      <p>@ George Washington University | GW Fitness</p>
+      <p><a href="mailto:gwfitness@club.net">gwfitness@club.net</a></p>
+    </div>
+  </footer>
 </html>
+
