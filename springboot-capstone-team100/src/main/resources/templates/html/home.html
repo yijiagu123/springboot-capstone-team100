@@ -334,7 +334,7 @@
     <main>
         <div class="search-container">
             <!-- first enter（home.html）and call /posts/listPage, show the following posts -->
-            <form action="/posts/listPage" method="get">
+            <form action="/home" method="get">
                 <input type="text" name="search" placeholder="Search...">
                 <button type="submit">Search</button>
             </form>
@@ -360,10 +360,10 @@
                     <td th:text="${post.title}">Post Title</td>
                     <td th:text="${post.content}" style="width: 50%">Post Content</td>
                     <td th:text="${#temporals.format(post.postAt, 'yyyy-MM-dd HH:mm:ss')}">Post At</td>
-                    <td style="text-align: right;width: 28%">
+                    <td style="text-align: right;width: 28%;">
+                        <a th:id="'btnEdit_' + ${post.postId}" class="editBtn" href="#" th:if="${post.user.id == userId}">Edit</a>
+                        <a th:href="@{'/posts/delete/' + ${post.postId}}" onclick="return confirm('Confirm delete post?')"  th:if="${post.user.id == userId}">delete</a>
                         <a th:id="'btnRead_' + ${post.postId}" class="readBtn" href="#">Read</a>
-                        <a th:id="'btnEdit_' + ${post.postId}" class="editBtn" href="#">Edit</a>
-                        <a th:href="@{'/posts/delete/' + ${post.postId}}" onclick="return confirm('Confirm delete post?')"  >delete</a>
                     </td>
                 </tr>
             </tbody>
