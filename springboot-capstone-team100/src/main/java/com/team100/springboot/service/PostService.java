@@ -32,11 +32,11 @@ public class PostService {
     }
 
     public Page<Post> findAllPosts(Pageable pageable) {
-        return postRepository.findAll(pageable);
+        return postRepository.getAllByOrderByPostAtDesc(pageable);
     }
 
     public Page<Post> findAllPostsByKeyword(String search, Pageable pageable) {
-        return postRepository.findAllByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(search,search,pageable);
+        return postRepository.findAllByTitleContainingIgnoreCaseOrContentContainingIgnoreCaseOrderByPostAtDesc(search,search,pageable);
     }
 
     public void deletePostById(Long postId) {
@@ -64,4 +64,11 @@ public class PostService {
         }
     }
 
+    public Page<Post> findAllPostsByKeywordAndUserId(String search, Pageable pageable, Long userId) {
+        return postRepository.findAllByUserIdAndTitleContainingIgnoreCaseOrContentContainingIgnoreCaseOrderByPostAtDesc(userId,search,search,pageable);
+    }
+
+    public Page<Post> findAllPostsByUserId(Long userId,Pageable pageable) {
+        return postRepository.findAllByUserIdOrderByPostAtDesc(userId,pageable);
+    }
 }
