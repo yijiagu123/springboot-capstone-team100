@@ -33,9 +33,13 @@ public class AuthController {
     // handler method to handle home page request
     @GetMapping("/home")
     public String home(Model model, @RequestParam(defaultValue = "0") int page,
-                       @RequestParam(name = "search", required = false) String search) {
+                       @RequestParam(name = "search", required = false) String search,
+                       Principal principal) {
         Pageable pageable = PageRequest.of(page, 10000); // 10为每页显示的数量
 
+        String email = principal.getName();
+        User user = userService.findUserByEmail(email);
+        Long userId = user.getId();
         Page<Post> postPage;
 
         if (search != null && !search.isEmpty()) {
@@ -48,6 +52,7 @@ public class AuthController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", postPage.getTotalPages());
         model.addAttribute("search", search);
+        model.addAttribute("userId", userId);
 
         return "home";
     }
