@@ -51,15 +51,21 @@ public class PostController {
 
     @GetMapping("/listPage")
     public String viewPosts(Model model, @RequestParam(defaultValue = "0") int page,
-                            @RequestParam(name = "search", required = false) String search) {
+                            @RequestParam(name = "search", required = false) String search,
+                            Principal principal) {
         Pageable pageable = PageRequest.of(page, 10000); // 10为每页显示的数量
 
+        String email = principal.getName();
+        User user = userService.findUserByEmail(email);
+        Long userId = user.getId();
         Page<Post> postPage;
 
         if (search != null && !search.isEmpty()) {
-            postPage = postService.findAllPostsByKeyword(search, pageable);
+            postPage = postService.findAllPostsByKeywordAndUserId(search, pageable,userId);
+//            postPage = postService.findAllPostsByKeyword(search, pageable);
         } else {
-            postPage = postService.findAllPosts(pageable);
+            postPage = postService.findAllPostsByUserId(userId,pageable);
+//            postPage = postService.findAllPosts(pageable);
         }
 
         model.addAttribute("posts", postPage.getContent());
@@ -67,7 +73,7 @@ public class PostController {
         model.addAttribute("totalPages", postPage.getTotalPages());
         model.addAttribute("search", search);
 
-        return "home";
+        return "listPage";
     }
 
 
