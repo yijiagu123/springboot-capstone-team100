@@ -33,13 +33,9 @@ public class AuthController {
     // handler method to handle home page request
     @GetMapping("/home")
     public String home(Model model, @RequestParam(defaultValue = "0") int page,
-                       @RequestParam(name = "search", required = false) String search,
-                       Principal principal) {
+                       @RequestParam(name = "search", required = false) String search) {
         Pageable pageable = PageRequest.of(page, 10000); // 10为每页显示的数量
 
-        String email = principal.getName();
-        User user = userService.findUserByEmail(email);
-        Long userId = user.getId();
         Page<Post> postPage;
 
         if (search != null && !search.isEmpty()) {
@@ -52,7 +48,6 @@ public class AuthController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", postPage.getTotalPages());
         model.addAttribute("search", search);
-        model.addAttribute("userId", userId);
 
         return "home";
     }
@@ -76,6 +71,11 @@ public class AuthController {
         if (userDto.getUserType() == User.UserType.INDIVIDUAL && !userDto.getEmail().endsWith("@gwu.edu")) {
             result.rejectValue("email", null, "Email must end with @gwu.edu for individual users");
         }
+        // Validate password
+        // Validate password format
+        if (!isValidPassword(userDto.getPassword())) {
+            result.rejectValue("password", null, "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character, and be at least 8 characters long");
+        }
 
         User existingUser = userService.findUserByEmail(userDto.getEmail());
 
@@ -93,6 +93,11 @@ public class AuthController {
         return "redirect:/register?success";
     }
 
+    private boolean isValidPassword(String password) {
+
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        return password.matches(passwordPattern);
+    }
 
     // handler method to handle list of users
     @GetMapping("/users")
