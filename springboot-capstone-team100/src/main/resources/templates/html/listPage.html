@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<!-- This website template was created by: Team 100 -->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Complete Fitness - Free Trial | Forward Fitness Club</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Font Reddit Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+
+    <meta name="description" content="The Forward Fitness Club is an elite fitness center dedicated to helping clients achieve their fitness and nutrition goals.">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Reddit Mono', monospace; /* Using Google Font Reddit Mono */
+            line-height: 1.6;
+            color: #333;
+            background-color: bisque; /* Light brown background */
+        }
+
+        /* Container for the whole page */
+        #container {
+            width: 80%;
+            margin: auto;
+            overflow: auto;
+        }
+
+        /* Header Styles */
+        header#ffc-logo {
+            text-align: center;
+            margin-bottom: 20px; /* Reduce space between header and nav */
+            margin-top: 20px;
+        }
+
+        header#ffc-logo img {
+            max-height: 100px; /* Logo image height */
+            margin: 0 auto; /* Center align */
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: #033C5A; /* Deep blue background */
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px; /* Increase space between links */
+        }
+
+        nav a:hover {
+            color: #eaeaea;
+        }
+
+        /* Mobile Navigation Styles */
+        .mobile-nav .menu-icon {
+            cursor: pointer;
+            display: inline-block;
+            padding: 0 15px; /* Adjust right spacing */
+        }
+
+        /* Ensure the body has no margin */
+        body {
+            margin: 0; /* Removes default margin */
+        }
+
+        /* Search Container Styles */
+        .search-container {
+            width: 100%; /* Ensure the search container takes up full width */
+            text-align: center;
+            margin: 20px 0;
+            box-sizing: border-box; /* Ensure padding and border are included in the width calculation */
+        }
+
+        .search-container form {
+            display: flex; /* Use flexbox to layout children side by side */
+            width: 100%;
+        }
+
+        .search-container input[type="text"] {
+            flex-grow: 5; /* Input takes up the remaining space */
+            padding: 10px;
+            font-size: 17px;
+            border: 1px solid grey;
+            border-right: none; /* Remove the right border where it meets the button */
+            box-sizing: border-box; /* Ensure padding does not add to width */
+        }
+
+        .search-container button {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 17px;
+            background: #333; /* Button background color */
+            color: white; /* Text color */
+            border: 1px solid grey; /* Consistent with the input field */
+            box-sizing: border-box; /* Ensure padding does not add to width */
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background: #AA9868; /* Hover background color */
+        }
+
+        .button-group {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .button-group button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 0 10px;
+            background-color: #0190DB;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button-group button:hover {
+            background-color: #AA9868;
+        }
+
+
+
+        /* Footer Styles */
+        footer {
+            background-color: #033C5A;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        footer p, footer a {
+            color: white;
+        }
+
+        footer a:hover {
+            color: #c1c1c1;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (min-width: 768px) {
+            .tablet-desktop ul {
+                display: flex;
+                justify-content: center;
+                list-style-type: none;
+            }
+
+            .tablet-desktop li {
+                margin: 0 20px;
+            }
+
+            .tablet-desktop a {
+                text-decoration: none;
+                color: white;
+            }
+
+            .tablet-desktop a:hover {
+                color: #eaeaea;
+            }
+        }
+
+        /* Modal base styles */
+        #myModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6); /* Darker background for better focus on modal */
+        }
+
+        #editModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6); /* Darker background for better focus on modal */
+        }
+
+        #readModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6); /* Darker background for better focus on modal */
+        }
+
+        /* Modal content styles */
+        .modal-content {
+            background-color: #fff;
+            margin: 4% auto;
+            padding: 20px;
+            border-radius: 10px; /* More pronounced rounded corners */
+            width: 50%; /* Adjust width as needed */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Stronger shadow for depth perception */
+            position: relative; /* Needed for positioning the close button absolutely */
+            animation: modalFadeIn 0.5s; /* Smooth fade-in animation */
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        /* The Close Button */
+        .close {
+            color: #333;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* The Close Button */
+        .closeEdit {
+            color: #333;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .closeEdit:hover,
+        .closeEdit:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* The Close Button */
+        .closeRead {
+            color: #333;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .closeRead:hover,
+        .closeRead:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Form styling */
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Consistent gap between form elements */
+        }
+
+        .modal-content form input[type="text"],
+        .modal-content form textarea,
+        .modal-content form input[type="file"] {
+            padding: 10px;
+            border-radius: 5px; /* Slightly rounded borders for input and textarea */
+            border: 1px solid #ccc; /* Subtle border */
+            width: calc(100% - 20px); /* Full width minus padding */
+        }
+
+        .modal-content form button {
+            padding: 10px 0;
+            background-color: #E9C874; /* Bootstrap primary color for consistency */
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition for button hover */
+        }
+
+        .modal-content form button:hover {
+            background-color: #FF9800; /* Darker shade on hover */
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="container">
+
+    <!-- Use the header area for the website name or logo -->
+    <header id="ffc-logo">
+        <a href="index.html"><img src="/images/logo.png" alt="Forward Fitness Club logo"></a>
+    </header>
+
+    <!-- Tablet, Desktop Nav -->
+    <nav class="tablet-desktop">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/userprofile">Profile</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+              <li style="margin-left: auto;"><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Use the main area to add the main content of the webpage -->
+    <main>
+        <div class="search-container">
+            <!-- first enter（home.html）and call /posts/listPage, show the following posts -->
+            <form action="/posts/listPage" method="get">
+                <input type="text" name="search" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+
+        </div>
+
+        <div class="button-group">
+            <button type="button" id="myBtn" onclick="location.href='/new-post'" >New Post</button>
+            <button type="button" onclick="location.href='/posts/listPage'">My Post</button>
+        </div>
+
+        <table>
+            <thead style="text-align: center">
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Post At</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody style="text-align: center">
+                <tr th:each="post : ${posts}">
+                    <td th:text="${post.title}">Post Title</td>
+                    <td th:text="${post.content}" style="width: 50%">Post Content</td>
+                    <td th:text="${#temporals.format(post.postAt, 'yyyy-MM-dd HH:mm:ss')}">Post At</td>
+                    <td style="text-align: right;width: 28%">
+                        <a th:id="'btnEdit_' + ${post.postId}" class="editBtn" href="#">Edit</a>
+                        <a th:href="@{'/posts/delete/' + ${post.postId}}" onclick="return confirm('Confirm delete post?')"  >delete</a>
+                        <a th:id="'btnRead_' + ${post.postId}" class="readBtn" href="#">Read</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 分页导航 -->
+<!--        <div class="pagination">-->
+<!--            <ul>-->
+<!--                <li th:if="${currentPage > 0}">-->
+<!--                    <a th:href="@{'/posts/listPage?page=' + ${currentPage - 1} + '&search=' + ${search}}">Previous</a>-->
+<!--                </li>-->
+<!--                <li th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}" th:class="${pageNumber == currentPage ? 'active' : ''}">-->
+<!--                    <a th:href="@{'/posts/listPage?page=' + ${pageNumber} + '&search=' + ${search}}" th:text="${pageNumber + 1}"></a>-->
+<!--                </li>-->
+<!--                <li th:if="${currentPage < totalPages - 1}">-->
+<!--                    <a th:href="@{'/posts/listPage?page=' + ${currentPage + 1} + '&search=' + ${search}}">Next</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+        <!-- Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form th:action="@{/posts/submit-post}" method="post" enctype="multipart/form-data">
+                    <label for="postTitle">Title:</label>
+                    <input type="text" id="postTitle" name="postTitle" required><br><br>
+                    <label for="postBody">Body:</label>
+                    <textarea id="postBody" name="postBody" rows="4" required></textarea><br><br>
+                    <button type="submit">Submit Post</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="closeEdit">&times;</span>
+                <form th:action="@{/posts/update}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" id="postIdEdit" name="postId"><br><br>
+                    <label for="postTitle">Title:</label>
+                    <input type="text" id="postTitleEdit" name="title" required><br><br>
+                    <label for="postBody">Body:</label>
+                    <textarea id="postBodyEdit"  name="content" rows="4" required></textarea><br><br>
+                    <button type="submit">Submit Post</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="readModal" class="modal">
+            <div class="modal-content">
+                <span class="closeRead">&times;</span>
+                <form method="post" enctype="multipart/form-data">
+                    <label for="postTitle">Title:</label>
+                    <input type="text" id="postTitleRead" name="title" readonly disabled><br><br>
+                    <label for="postBody">Body:</label>
+                    <textarea id="postBodyRead"  name="content" rows="4" readonly disabled></textarea><br><br>
+                    <label for="postTitle">Post At:</label>
+                    <input type="text" id="postAtRead" name="postAt" readonly disabled><br><br>
+<!--                    <button type="button" class="closeRead">close page</button>-->
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Use the footer area to add webpage footer content -->
+    <footer>
+
+        <div class="copyright">
+            <p>@ George Washington University | GW Fitness</p>
+            <p><a href="mailto:gwfitness@club.net">gwfitness@club.net</a></p>
+        </div>
+
+    </footer>
+
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    var editModal = document.getElementById("editModal");
+    editModal.style.display = "none";
+
+    var readModal = document.getElementById("readModal");
+    readModal.style.display = "none";
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            editModal.style.display = "none";
+            readModal.style.display = "none";
+        }
+    }
+</script>
+<script th:inline="javascript">
+    // Get edit button
+    var editButtons = document.querySelectorAll('.editBtn');
+    var readButtons = document.querySelectorAll('.readBtn');
+    // Iterate through each edit button and add a click event
+    editButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Get postId
+            var postId = this.id.split('_')[1];
+            document.getElementById('editModal').style.display = 'block';
+            // Get the data of the table row
+            var row = this.closest('tr');
+            var title = row.querySelector('td:nth-child(1)').innerText;
+            var content = row.querySelector('td:nth-child(2)').innerText;
+
+            // Populate data into edit form
+            document.getElementById('postIdEdit').value = postId;
+            document.getElementById('postTitleEdit').value = title;
+            document.getElementById('postBodyEdit').value = content;
+
+            // set submit address when edting form
+            // document.getElementById('editForm').action = '/posts/update';
+            // Show edit modal
+            document.getElementById('editModal').style.display = 'block';
+        });
+    });
+    // Iterate through each edit button and add a click event
+    readButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Get postId
+            var postId = this.id.split('_')[1];
+            document.getElementById('readModal').style.display = 'block';
+            // Get the data of the table row
+            var row = this.closest('tr');
+            var title = row.querySelector('td:nth-child(1)').innerText;
+            var content = row.querySelector('td:nth-child(2)').innerText;
+            var postAt = row.querySelector('td:nth-child(3)').innerText;
+
+            // Populate data into edit form
+            document.getElementById('postTitleRead').value = title;
+            document.getElementById('postBodyRead').value = content;
+            document.getElementById('postAtRead').value = postAt;
+        });
+    });
+
+    // Close button click event of edit modal box
+    document.querySelector('.closeEdit').addEventListener('click', function() {
+        document.getElementById('editModal').style.display = 'none';
+    });
+
+    // Close button click event of edit modal box
+    document.querySelector('.closeRead').addEventListener('click', function() {
+        document.getElementById('readModal').style.display = 'none';
+    });
+
+</script>
+
+
+</body>
+</html>
