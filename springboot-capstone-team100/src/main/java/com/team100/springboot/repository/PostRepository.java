@@ -9,6 +9,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Page<Post> findAllByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(String titleKeyword, String contentKeyword, Pageable pageable);
+    Page<Post> findAllByTitleContainingIgnoreCaseOrContentContainingIgnoreCaseOrderByPostAtDesc(String titleKeyword, String contentKeyword, Pageable pageable);
+
+    Page<Post> findAllByUserIdAndTitleContainingIgnoreCaseOrContentContainingIgnoreCaseOrderByPostAtDesc(Long userId, String title, String content, Pageable pageable);
+
+    Page<Post> findAllByUserIdOrderByPostAtDesc(Long userId, Pageable pageable);
+
+    Page<Post> getAllByOrderByPostAtDesc(Pageable pageable);
+//    Page<Post> findAllOrderByPostAtDesc(Pageable pageable);
 
 }
