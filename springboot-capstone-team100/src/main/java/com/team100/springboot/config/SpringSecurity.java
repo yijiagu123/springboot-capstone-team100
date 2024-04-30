@@ -34,7 +34,8 @@ public class SpringSecurity {
                                 .requestMatchers("/posts/**").permitAll()
                                 .requestMatchers("/users").permitAll()
                                 .requestMatchers("/").permitAll()
-                                .requestMatchers("/subscription").permitAll()  
+                                .requestMatchers("/subscription").permitAll()
+                                .requestMatchers("/goToPayment").permitAll()
                                 .requestMatchers("/payment").permitAll()  
                 ).formLogin(
                         form -> form
