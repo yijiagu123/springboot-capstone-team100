@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PaymentController {
 
-    @GetMapping("/goToSubscription")
-    public String goToSubscription() {
+    @GetMapping("/goToPayment")
+    public String goToPayment() {
         return "payment";
     }
 }
