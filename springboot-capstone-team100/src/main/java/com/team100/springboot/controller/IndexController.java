@@ -15,5 +15,11 @@ public class IndexController {
 
 
 }
+public class SubscriptionController {
 
+    @GetMapping("/goToSubscription")
+    public String goToSubscription() {
+        return "redirect:/subscription.html";
+    }
+}
 
