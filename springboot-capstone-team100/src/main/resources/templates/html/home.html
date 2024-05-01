@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google Font Reddit Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
 
@@ -307,7 +308,14 @@
         .modal-content form button:hover {
             background-color: #FF9800; /* Darker shade on hover */
         }
-
+        .post-title {
+            font-size: 16px;
+            color: #033C5A;
+            padding: 10px 30px;
+        }
+        .frame {
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
@@ -346,6 +354,24 @@
             <button type="button" id="myBtn" onclick="location.href='/new-post'" >New Post</button>
             <button type="button" onclick="location.href='/posts/listPage'">My Post</button>
         </div>
+        <div class="grid">
+
+            <figure class="frame">
+                <img src="/images/workout-partner.jpeg" alt="group of fitness people">
+                <figcaption class="pic-text">Workout Partners</figcaption>
+            </figure>
+
+            <figure class="frame">
+                <img src="/images/online-class.png" alt="healthy food in the shape of a heart">
+                <figcaption class="pic-text">Online Workshops</figcaption>
+            </figure>
+
+            <figure class="frame">
+                <img src="/images/fitness-center.png" alt="personal trainer with a clipboard">
+                <figcaption class="pic-text">Nearby Fitness Center</figcaption>
+            </figure>
+
+        </div>
 
         <table>
             <thead style="text-align: center">
@@ -358,7 +384,7 @@
             </thead>
             <tbody style="text-align: center">
                 <tr th:each="post : ${posts}">
-                    <td th:text="${post.title}">Post Title</td>
+                    <td span class="post-title"  th:text="${post.title}">Post Title</td>
                     <td th:text="${post.content}" style="width: 50%">Post Content</td>
                     <td th:text="${#temporals.format(post.postAt, 'yyyy-MM-dd HH:mm:ss')}">Post At</td>
                     <td style="text-align: right;width: 28%;">
