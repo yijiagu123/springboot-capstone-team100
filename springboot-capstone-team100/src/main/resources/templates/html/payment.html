@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payment Page</title>
 
-    <link rel="stylesheet" href="../../static/css/home.css" />
+    <link rel="stylesheet" href="css/home.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,7 +34,7 @@
   <body>
     <nav class="tablet-desktop">
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Contact Us</a></li>
       </ul>
@@ -48,12 +48,7 @@
           </div>
 
           <div class="card-body">
-            <form
-              method="post"
-              role="form"
-              th:action="@{/register/save}"
-              th:object="${user}"
-            >
+
               <div class="form-group mb-3">
                 <label class="form-label">Address</label>
                 <input
@@ -61,14 +56,9 @@
                   id="address"
                   name="address"
                   placeholder="Enter your address"
-                  th:field="*{fullName}"
                   type="text"
                 />
-                <p
-                  th:errors="*{fullName}"
-                  class="text-danger"
-                  th:if="${#fields.hasErrors('fullName')}"
-                ></p>
+
               </div>
 
               <div class="form-group mb-3">
