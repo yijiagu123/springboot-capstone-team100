@@ -307,6 +307,11 @@
         .modal-content form button:hover {
             background-color: #FF9800; /* Darker shade on hover */
         }
+        .post-title {
+            font-size: 16px; /* 调整字号为24像素 */
+            color: #033C5A;
+            padding: 10px 30px;
+        }
 
     </style>
 </head>
@@ -324,6 +329,7 @@
         <ul>
             <li><a href="/home">Home</a></li>
             <li><a href="/userprofile">Profile</a></li>
+            <li><a href="/goToSubscription">Subscribe</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Contact Us</a></li>
               <li style="margin-left: auto;"><a href="/logout">Logout</a></li>
@@ -357,7 +363,7 @@
             </thead>
             <tbody style="text-align: center">
                 <tr th:each="post : ${posts}">
-                    <td th:text="${post.title}">Post Title</td>
+                    <td class="post-title" th:text="${post.title}">Post Title</td>
                     <td th:text="${post.content}" style="width: 50%">Post Content</td>
                     <td th:text="${#temporals.format(post.postAt, 'yyyy-MM-dd HH:mm:ss')}">Post At</td>
                     <td style="text-align: right;width: 28%">
